@@ -14,14 +14,27 @@ st.set_page_config(
     page_icon="💳",
     layout="wide",
 )
+st.write("Current Working Directory:", os.getcwd())
+st.write("BASE_DIR:", config.BASE_DIR)
+st.write("MODELS_DIR:", config.MODELS_DIR)
+st.write("MODELS_DIR exists:", os.path.exists(config.MODELS_DIR))
+
+if os.path.exists(config.MODELS_DIR):
+    st.write("Models folder:", os.listdir(config.MODELS_DIR))
+
+st.write("BEST_MODEL_PATH:", config.BEST_MODEL_PATH)
+st.write("Model exists:", os.path.exists(config.BEST_MODEL_PATH))
+st.write("Scaler exists:", os.path.exists(config.SCALER_PATH))
 
 @st.cache_resource
 def load_model_and_scaler():
-    if not os.path.exists(config.BEST_MODEL_PATH) or not os.path.exists(config.SCALER_PATH):
+    try:
+        model = joblib.load(config.BEST_MODEL_PATH)
+        scaler = joblib.load(config.SCALER_PATH)
+        return model, scaler
+    except Exception as e:
+        st.exception(e)
         return None, None
-    model = joblib.load(config.BEST_MODEL_PATH)
-    scaler = joblib.load(config.SCALER_PATH)
-    return model, scaler
 
 
 def score_transactions(model, scaler, df: pd.DataFrame, threshold: float) -> pd.DataFrame:
