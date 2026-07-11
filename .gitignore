@@ -1,0 +1,11 @@
+data/*.csv
+models/*.joblib
+outputs/*
+!outputs/.gitkeep
+mlruns/
+mlflow.db
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.streamlit/
