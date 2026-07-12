@@ -1,7 +1,6 @@
 data/*.csv
 
-outputs/*
-!outputs/.gitkeep
+
 mlruns/
 mlflow.db
 venv/
