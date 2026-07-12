@@ -12,6 +12,11 @@ An end-to-end **Machine Learning pipeline** for detecting fraudulent credit card
 
 ---
 
+## 🚀 Live Demo
+
+https://credit-card-fraud-detection-aj8ejquew58jn37edxdrba.streamlit.app
+
+---
 # 📑 Table of Contents
 
 - Project Overview
